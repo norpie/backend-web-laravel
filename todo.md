@@ -13,18 +13,18 @@
     - [ ] Each user has their own publicly available profile page
     - [ ] A user can edit their own user data
     - [ ] The information shown is at least
-    - [ ] Username
-    - [ ] Birthday
-    - [ ] Avatar (that can be uploaded and saved on the webserver)
-    - [ ] Short 'about me' biography 
+        - [ ] Username
+        - [ ] Birthday
+        - [ ] Avatar (that can be uploaded and saved on the webserver)
+        - [ ] Short 'about me' biography 
 - [ ] Latest news
     - [ ] Admins can add, edit, and delete news items
     - [ ] Every visitor of the website can view the news posts
     - [ ] These news items have at least the following:
-    - [ ] Title
-    - [ ] Cover image
-    - [ ] Content
-    - [ ] Publishing date
+        - [ ] Title
+        - [ ] Cover image
+        - [ ] Content
+        - [ ] Publishing date
 - [ ] FAQ page
     - [ ] There is a list of questions and answers, grouped by categories
     - [ ] Admins can add, edit, and delete FAQ categories
@@ -66,8 +66,8 @@
 - [ ] Models
     - [ ] Use Eloquent models
     - [ ] Add relationships where needed
-    - [ ] At least 1 one-to-many
-    - [ ] At least 1 many-to-many 
+        - [ ] At least 1 one-to-many
+        - [ ] At least 1 many-to-many 
 - [ ] Database
     - [ ] Your database needs to be created using migration files 
     - [ ] Add seeders to have some "dummy" data
