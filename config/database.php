@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('POSTGRES_URL', 'pgsql'),
+    'default' => 'postgres',
 
     /*
     |--------------------------------------------------------------------------
@@ -63,8 +63,8 @@ return [
             ]) : [],
         ],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
+        'postgres' => [
+            'driver' => 'postgres',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),

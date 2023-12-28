@@ -15,6 +15,7 @@ class CreateAboutMeTable extends Migration
     {
         Schema::create('about_me', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('about_me');
         });

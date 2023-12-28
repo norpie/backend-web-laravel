@@ -15,6 +15,7 @@ class CreateFaqQuestionAnswerPairTable extends Migration
     {
         Schema::create('faq_question_answer_pair', function (Blueprint $table) {
             $table->id();
+            $table->integer('faq_category_id');
             $table->foreign('faq_category_id')->references('id')->on('faq_categories')->onDelete('cascade');
             $table->string('question');
             $table->string('answer');
