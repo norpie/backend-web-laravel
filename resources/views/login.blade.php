@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <!-- Include any necessary CSS stylesheets or frameworks -->
 </head>
 
 <body>
