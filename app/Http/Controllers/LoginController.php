@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
+    public function show()
+    {
+        return view('login');
+    }
+
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
