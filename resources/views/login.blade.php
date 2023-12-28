@@ -12,13 +12,15 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf <!-- CSRF protection -->
 
-            @error('email')
-            <span>{{ $message }}</span>
-            @enderror
-
-            @error('password')
-            <span>{{ $message }}</span>
-            @enderror
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <div>
                 <label for="email">Email</label>
