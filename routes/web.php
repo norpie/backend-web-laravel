@@ -43,13 +43,15 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(Admin::class)->group(function () {
     Route::controller(AdminController::class)->group(function () {
-        Route::get('/admin/news', 'showNews')->name('admin');
-        Route::post('/admin/news', 'editNews')->name('admin');
-        Route::get('/admin/faq/categories', 'showFaqCats')->name('admin');
-        Route::post('/admin/faq/categories', 'editFaqCats')->name('admin');
-        Route::get('/admin/faq/questions-and-answers', 'showFaq')->name('admin');
-        Route::post('/admin/faq/questions-and-answers', 'editFaq')->name('admin');
-        Route::get('/admin/contact', 'showContact')->name('admin');
-        Route::get('/admin/contact', 'respondContact')->name('admin');
+        Route::get('/admin/news', 'showNews')->name('admin.shownews');
+        Route::post('/admin/news/edit', 'editNews')->name('admin.editnews');
+        Route::post('/admin/news/add', 'addNews')->name('admin.addnews');
+        Route::post('/admin/news/delete', 'deleteNews')->name('admin.deletenews');
+        Route::get('/admin/faq/categories', 'showFaqCats');
+        Route::post('/admin/faq/categories', 'editFaqCats');
+        Route::get('/admin/faq/questions-and-answers', 'showFaq');
+        Route::post('/admin/faq/questions-and-answers', 'editFaq');
+        Route::get('/admin/contact', 'showContact');
+        Route::get('/admin/contact', 'respondContact');
     });
 });
