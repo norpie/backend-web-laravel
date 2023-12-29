@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +19,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::id()->user();
+        $user = Auth::user();
         $isAdmin = $this->isAdmin($user);
         if (!$isAdmin) {
-            return redirect()->route('welcome');
+            abort(404);
         }
         return $next($request);
     }

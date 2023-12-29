@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Middleware\Admin;
-use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,19 +29,23 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'authenticate')->name('register');
 });
 
-Route::controller(ProfileController::class)->group(function () {
-    Route::get('/profile/{username}', 'show')->name('profile.username');
-    Route::get('/profile', 'showEdit')->name('profile')->middleware('auth');
-    Route::post('/profile', 'update')->name('profile');
+Route::middleware('auth')->group(function () {
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile/{username}', 'show')->name('profile.username')->withoutMiddleware('auth');
+        Route::get('/profile', 'showEdit')->name('profile');
+        Route::post('/profile', 'update')->name('profile');
+    });
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/news', 'showNews')->name('admin');
-    Route::post('/admin/news', 'editNews')->name('admin');
-    Route::get('/admin/faq/categories', 'showFaqCats')->name('admin');
-    Route::post('/admin/faq/categories', 'editFaqCats')->name('admin');
-    Route::get('/admin/faq/questions-and-answers', 'showFaq')->name('admin');
-    Route::post('/admin/faq/questions-and-answers', 'editFaq')->name('admin');
-    Route::get('/admin/contact', 'showContact')->name('admin');
-    Route::get('/admin/contact', 'respondContact')->name('admin');
-})->middleware(Admin::class);
+Route::middleware(Admin::class)->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/news', 'showNews')->name('admin');
+        Route::post('/admin/news', 'editNews')->name('admin');
+        Route::get('/admin/faq/categories', 'showFaqCats')->name('admin');
+        Route::post('/admin/faq/categories', 'editFaqCats')->name('admin');
+        Route::get('/admin/faq/questions-and-answers', 'showFaq')->name('admin');
+        Route::post('/admin/faq/questions-and-answers', 'editFaq')->name('admin');
+        Route::get('/admin/contact', 'showContact')->name('admin');
+        Route::get('/admin/contact', 'respondContact')->name('admin');
+    });
+});
