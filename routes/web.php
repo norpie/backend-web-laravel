@@ -28,4 +28,6 @@ Route::controller(RegisterController::class)->group(function () {
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile/{username}', 'show')->name('profile.username');
+    Route::get('/profile', 'showEdit')->name('profile');
+    Route::post('/profile', 'update')->name('profile');
 });

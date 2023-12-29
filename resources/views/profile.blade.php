@@ -20,7 +20,7 @@
     <div> <!--Render laravel username-->
         <p>Username: {{ $username }}</p>
         <p>Date of birth: {{ $dob }}</p>
-        <img src="{{ $avatar }}" alt="Profile image">
+        <img src="{{ asset($avatar) }}" alt="Profile image">
         <p>About me: {{ $about }}</p>
     </div>
 </body>
