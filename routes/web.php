@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +20,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'show')->name('login');
+    Route::get('/login', 'show')->name('login')->middleware('guest');
     Route::post('/login', 'authenticate')->name('login');
 });
 
 Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register', 'show')->name('regiser');
+    Route::get('/register', 'show')->name('regiser')->middleware('guest');
     Route::post('/register', 'authenticate')->name('register');
 });
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile/{username}', 'show')->name('profile.username');
-    Route::get('/profile', 'showEdit')->name('profile');
+    Route::get('/profile', 'showEdit')->name('profile')->middleware('auth');
     Route::post('/profile', 'update')->name('profile');
 });
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/news', 'showNews')->name('admin');
+    Route::post('/admin/news', 'editNews')->name('admin');
+    Route::get('/admin/faq/categories', 'showFaqCats')->name('admin');
+    Route::post('/admin/faq/categories', 'editFaqCats')->name('admin');
+    Route::get('/admin/faq/questions-and-answers', 'showFaq')->name('admin');
+    Route::post('/admin/faq/questions-and-answers', 'editFaq')->name('admin');
+    Route::get('/admin/contact', 'showContact')->name('admin');
+    Route::get('/admin/contact', 'respondContact')->name('admin');
+})->middleware(Admin::class);
