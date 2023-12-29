@@ -19,15 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'show')->name('login')->middleware('guest');
-    Route::post('/login', 'authenticate')->name('login');
+Route::middleware('guest')->group(function () {
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login', 'show')->name('login');
+        Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('guest')->middleware('auth');
+        Route::post('/login', 'authenticate')->name('login');
+    });
+
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register', 'show')->name('regiser');
+        Route::post('/register', 'authenticate')->name('register');
+    });
 });
 
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register', 'show')->name('regiser')->middleware('guest');
-    Route::post('/register', 'authenticate')->name('register');
-});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
