@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\InfoController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::middleware('guest')->group(function () {
     });
 });
 
+Route::controller(InfoController::class)->group(function () {
+    Route::get('/faq', 'showFaqs')->name('showFaqs');
+    Route::get('/news', 'showNews')->name('showNews');
+});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
