@@ -20,6 +20,11 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
+
+        if (!$user) {
+            abort(404);
+        }
+
         $isAdmin = $this->isAdmin($user);
         if (!$isAdmin) {
             abort(404);
