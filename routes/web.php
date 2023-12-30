@@ -59,6 +59,8 @@ Route::middleware(Admin::class)->group(function () {
         Route::post('/admin/faq/questions-and-answers/edit', 'editFaq')->name('admin.editfaq');
         Route::post('/admin/faq/questions-and-answers/add', 'addFaq')->name('admin.addfaq');
         Route::post('/admin/faq/questions-and-answers/delete', 'deleteFaq')->name('admin.deletefaq');
+        Route::get('/admin/promote', 'showAdmins')->name('admin.showadmins');
+        Route::post('/admin/promote', 'promoteUser')->name('admin.promoteuser');
         Route::get('/admin/contact', 'showContact');
         Route::get('/admin/contact', 'respondContact');
     });

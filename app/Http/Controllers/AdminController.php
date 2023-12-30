@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Faq;
 use App\Models\FaqCategory;
+use App\Models\Admin;
+use App\Models\User;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -172,5 +174,41 @@ class AdminController extends Controller
         Faq::where('id', $request->query('id'))->delete();
 
         return redirect()->route('admin.showfaqs');
+    }
+
+    public function showAdmins(): View
+    {
+        /* Admin has user_id */
+        $admins = Admin::all();
+        $users = User::whereIn('id', $admins->pluck('user_id'))->get();
+
+        return view('admin.promote', [
+            'admins' => $users
+        ]);
+    }
+
+    public function promoteUser(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'username' => 'required|string|max:255|exists:users,username',
+        ]);
+
+        $user = User::where('username', $validated['username'])->first();
+
+        if ($user == null) {
+            return back()->withErrors(['username' => 'User not found']);
+        }
+
+        $admin = Admin::where('user_id', $user->id)->first();
+
+        if ($admin != null) {
+            return back()->withErrors(['username' => 'User is already an admin']);
+        }
+
+        Admin::create([
+            'user_id' => $user->id,
+        ]);
+
+        return redirect()->route('admin.showadmins');
     }
 }
