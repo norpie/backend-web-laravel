@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactForm;
+use App\Models\FormResponse;
 use App\Models\News;
 use App\Models\Faq;
 use App\Models\FaqCategory;
@@ -211,4 +213,34 @@ class AdminController extends Controller
 
         return redirect()->route('admin.showadmins');
     }
+
+    public function respondToContact(Request $request): RedirectResponse
+    {
+        $contact_id = $request->query('id');
+
+        $validated = $request->validate([
+            'response' => 'required|string',
+        ]);
+
+        FormResponse::create([
+            'contact_form_id' => $contact_id,
+            'admin_id' => Auth::id(),
+            'answer' => $validated['response'],
+        ]);
+
+        return redirect()->route('admin.showcontacts');
+    }
+
+    public function showContacts(): View
+    {
+        $contacts = ContactForm::whereNotIn(
+            'id',
+            FormResponse::all()->pluck('contact_form_id')
+        )->get();
+
+        return view('admin.contacts', [
+            'contacts' => $contacts
+        ]);
+    }
+
 }

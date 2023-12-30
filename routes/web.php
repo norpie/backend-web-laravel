@@ -35,6 +35,8 @@ Route::middleware('guest')->group(function () {
 Route::controller(InfoController::class)->group(function () {
     Route::get('/faq', 'showFaqs')->name('showFaqs');
     Route::get('/news', 'showNews')->name('showNews');
+    Route::get('/contact', 'showContact')->name('showContact');
+    Route::post('/contact', 'sendForm')->name('sendForm');
 });
 
 Route::middleware('auth')->group(function () {
@@ -61,7 +63,7 @@ Route::middleware(Admin::class)->group(function () {
         Route::post('/admin/faq/questions-and-answers/delete', 'deleteFaq')->name('admin.deletefaq');
         Route::get('/admin/promote', 'showAdmins')->name('admin.showadmins');
         Route::post('/admin/promote', 'promoteUser')->name('admin.promoteuser');
-        Route::get('/admin/contact', 'showContact');
-        Route::get('/admin/contact', 'respondContact');
+        Route::get('/admin/contact', 'showContacts')->name('admin.showcontacts');
+        Route::post('/admin/contact', 'respondToContact')->name('admin.respondtocontact');
     });
 });
