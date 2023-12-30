@@ -5,7 +5,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Middleware\Admin;
-use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,10 +46,14 @@ Route::middleware(Admin::class)->group(function () {
         Route::post('/admin/news/edit', 'editNews')->name('admin.editnews');
         Route::post('/admin/news/add', 'addNews')->name('admin.addnews');
         Route::post('/admin/news/delete', 'deleteNews')->name('admin.deletenews');
-        Route::get('/admin/faq/categories', 'showFaqCats');
-        Route::post('/admin/faq/categories', 'editFaqCats');
-        Route::get('/admin/faq/questions-and-answers', 'showFaq');
-        Route::post('/admin/faq/questions-and-answers', 'editFaq');
+        Route::get('/admin/faq/categories', 'showFaqCats')->name('admin.showfaqcats');
+        Route::post('/admin/faq/categories/edit', 'editFaqCat')->name('admin.editfaqcat');
+        Route::post('/admin/faq/categories/add', 'addFaqCat')->name('admin.addfaqcat');
+        Route::post('/admin/faq/categories/delete', 'deleteFaqCat')->name('admin.deletefaqcat');
+        Route::get('/admin/faq/questions-and-answers', 'showFaqs')->name('admin.showfaqs');
+        Route::post('/admin/faq/questions-and-answers/edit', 'editFaq')->name('admin.editfaq');
+        Route::post('/admin/faq/questions-and-answers/add', 'addFaq')->name('admin.addfaq');
+        Route::post('/admin/faq/questions-and-answers/delete', 'deleteFaq')->name('admin.deletefaq');
         Route::get('/admin/contact', 'showContact');
         Route::get('/admin/contact', 'respondContact');
     });
