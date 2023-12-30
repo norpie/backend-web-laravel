@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFaqQuestionAnswerPairTable extends Migration
+class CreateFaqsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFaqQuestionAnswerPairTable extends Migration
      */
     public function up()
     {
-        Schema::create('faq_question_answer_pair', function (Blueprint $table) {
+        Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->integer('faq_category_id');
-            $table->foreign('faq_category_id')->references('id')->on('faq_categories')->onDelete('cascade');
+            $table->integer('category_id');
+            $table->foreign('category_id')->references('id')->on('faq_categories')->onDelete('cascade');
             $table->string('question');
             $table->string('answer');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateFaqQuestionAnswerPairTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_question_answer_pair');
+        Schema::dropIfExists('faqs');
     }
 }
