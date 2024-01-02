@@ -16,6 +16,7 @@ class AdminSeeder extends Seeder
     {
         $user = User::create([
             'username' => 'admin',
+            'dob' => date('Y-m-d', strtotime('1990-01-01')),
             'email' => 'admin@ehb.be',
             'password' => Hash::make('Password!321'),
         ]);

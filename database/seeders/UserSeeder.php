@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'username' => 'user',
+            'dob' => date('Y-m-d', strtotime('1990-01-01')),
             'email' => 'user@example.com',
             'password' => Hash::make('password'),
         ]);
