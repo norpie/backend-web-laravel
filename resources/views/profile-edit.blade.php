@@ -18,7 +18,7 @@
     @endif
 
     <div>
-        <form action="{{ route('profile') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('profile.edit') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="username">Username</label>
@@ -34,6 +34,28 @@
             </div>
             <div>
                 <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+
+    {{-- Change Password --}}
+    <div>
+        <form action="{{ route('profile.password') }}" method="post">
+            @csrf
+            <div>
+                <label for="current_password">Current Password</label>
+                <input type="password" name="current_password" id="current_password">
+            </div>
+            <div>
+                <label for="password">New Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div>
+                <label for="password_confirmation">Confirm New Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation">
+            </div>
+            <div>
+                <input type="submit" value="Change Password">
             </div>
         </form>
     </div>

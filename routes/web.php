@@ -44,8 +44,9 @@ Route::controller(InfoController::class)->group(function () {
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile/{username}', 'show')->name('profile.username')->withoutMiddleware('auth');
-        Route::get('/profile', 'showEdit')->name('profile');
-        Route::post('/profile', 'update')->name('profile');
+        Route::get('/profile', 'showEdit')->name('profile.show');
+        Route::post('/profile/general', 'update')->name('profile.edit');
+        Route::post('/profile/password', 'updatePassword')->name('profile.password');
     });
 });
 

@@ -3,12 +3,15 @@
 
 
 
+
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -49,6 +52,31 @@ class ProfileController extends Controller
             'about' => $about_me,
         ]);
     }
+
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'current_password' => 'required|string|max:255',
+            'password' => 'required|string|max:255|confirmed',
+            'password_confirmation' => 'required|string|max:255'
+        ]);
+
+        if (!Hash::check($validated['current_password'], $user->password)) {
+            return redirect()->route('profile.show')->withErrors([
+                'current_password' => 'Current password is incorrect.',
+            ]);
+        }
+
+        DB::table('users')->where('id', $user->id)->update([
+            'password' => Hash::make($validated['password']),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('profile.show');
+    }
+
 
     public function showEdit(Request $request): View
     {
@@ -114,10 +142,11 @@ class ProfileController extends Controller
         if ($request->input('username') != $user->username) {
             DB::table('users')->where('id', $user->id)->update([
                 'username' => $request->input('username'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
 
-        return redirect()->route('profile');
+        return redirect()->route('profile.show');
     }
 
 }
