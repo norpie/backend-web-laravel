@@ -218,6 +218,12 @@ class AdminController extends Controller
     {
         $contact_id = $request->query('id');
 
+        if ($contact_id == null) {
+            return back()->withErrors(['id' => 'Contact not found']);
+        }
+
+        $contact = ContactForm::where('id', $contact_id)->first();
+
         $validated = $request->validate([
             'response' => 'required|string',
         ]);
@@ -228,7 +234,11 @@ class AdminController extends Controller
             'answer' => $validated['response'],
         ]);
 
-        // TODO: Send email to email
+        $sent = EmailController::sendEmail($contact->email, $validated['response']);
+
+        if (!$sent) {
+            return back()->withErrors(['email' => 'Email not sent']);
+        }
 
         return redirect()->route('admin.showcontacts');
     }

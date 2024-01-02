@@ -20,7 +20,6 @@ class InfoController extends Controller
     {
         $news = News::where('slug', $slug)->firstOrFail();
         $comments = $news->comments()->get();
-        // TODO: make map username to comment
         $commentWriters = [];
         foreach ($comments as $comment) {
             $commentWriters[$comment->id] = $comment->user()->first()->username;
