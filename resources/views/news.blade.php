@@ -20,7 +20,7 @@
         <h2>News</h2>
         <hr>
         @foreach($news as $new)
-            <p id="title">{{ $new->title }}"</p><br>
+            <p id="title"><a href="{{ route('showNewsSlug', $new->slug) }}">{{ $new->title }}</a></p><br>
             <p id="content" >{{ $new->content }}</p><br>
             <p>Create At</p>
             <p>{{ $new->created_at }}</p>
