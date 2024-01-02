@@ -35,6 +35,8 @@ Route::middleware('guest')->group(function () {
 Route::controller(InfoController::class)->group(function () {
     Route::get('/faq', 'showFaqs')->name('showFaqs');
     Route::get('/news', 'showNews')->name('showNews');
+    Route::get('/news/{slug}', 'showNew')->name('showNewsSlug');
+    Route::post('/news/{slug}', 'addNewsComment')->name('addNewsComment');
     Route::get('/contact', 'showContact')->name('showContact');
     Route::post('/contact', 'sendForm')->name('sendForm');
 });

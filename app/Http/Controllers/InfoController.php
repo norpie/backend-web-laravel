@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\ContactForm;
 use App\Models\News;
 use App\Models\Faq;
@@ -14,6 +15,40 @@ use Illuminate\View\View;
 
 class InfoController extends Controller
 {
+
+    public function showNew(Request $request, string $slug): View
+    {
+        $news = News::where('slug', $slug)->firstOrFail();
+        $comments = $news->comments()->get();
+        // TODO: make map username to comment
+        $commentWriters = [];
+        foreach ($comments as $comment) {
+            $commentWriters[$comment->id] = $comment->user()->first()->username;
+        }
+        $writer = $news->user()->first()->username;
+        return view('news-article', [
+            'article' => $news,
+            'comments' => $comments,
+            'writer' => $writer,
+            'commentWriters' => $commentWriters
+        ]);
+    }
+
+    public function addNewsComment(Request $request, string $slug): RedirectResponse
+    {
+        $validated = $request->validate([
+            'comment' => 'required'
+        ]);
+
+        $news = News::where('slug', $slug)->firstOrFail();
+        Comment::create([
+            'news_id' => $news->id,
+            'user_id' => $request->user()->id,
+            'comment' => $validated['comment']
+        ]);
+
+        return redirect()->route('showNewsSlug', ['slug' => $slug]);
+    }
 
     public function showNews(): View
     {

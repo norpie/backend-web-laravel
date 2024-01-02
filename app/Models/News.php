@@ -16,6 +16,11 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'news_id');
+    }
+
     public function slug()
     {
         return 'slug';
