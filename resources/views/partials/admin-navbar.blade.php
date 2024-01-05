@@ -18,7 +18,7 @@
     </style>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.shownews') }}">News</a>
