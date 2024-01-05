@@ -1,21 +1,19 @@
-<html>
-<head>
-    <title>Promote User</title>
-</head>
-<body>
+@extends('layouts.admin')
+
+@section('content')
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
     <div>
         <h3>Current Admins</h3>
         <ul>
-            @foreach($admins as $admin)
+            @foreach ($admins as $admin)
                 <li>{{ $admin->username }}</li>
             @endforeach
         </ul>
@@ -29,5 +27,4 @@
             <input type="submit" value="Promote">
         </form>
     </div>
-</body>
-</html>
+@endsection
