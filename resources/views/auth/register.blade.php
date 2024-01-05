@@ -8,6 +8,7 @@
 
 <body>
     <div>
+        @include('partials/navbar')
         <h2>Register</h2>
         <form method="POST" action="{{ route('register') }}">
             @csrf <!-- CSRF protection -->
