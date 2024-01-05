@@ -24,6 +24,13 @@
             <a class="nav-link" href="{{ route('admin.shownews') }}">News</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.showadmins') }}">Promote</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.showcontacts') }}">Contacts</a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.showfaqs') }}">Faq</a>
         </li>
         <li class="nav-item">
