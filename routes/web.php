@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -29,6 +30,13 @@ Route::middleware('guest')->group(function () {
     Route::controller(RegisterController::class)->group(function () {
         Route::get('/register', 'show')->name('regiser');
         Route::post('/register', 'authenticate')->name('register');
+    });
+
+    Route::controller(ForgotController::class)->group(function () {
+        Route::get('/forgot', 'show')->name('forgot');
+        Route::post('/forgot', 'request')->name('forgot');
+        Route::get('/reset/{token}', 'showReset')->name('reset');
+        Route::post('/reset/{token}', 'reset')->name('reset');
     });
 });
 
