@@ -22,6 +22,9 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('ideas.list') }}">Ideas</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('showAbout') }}">About</a>
         </li>
         <li class="nav-item">
