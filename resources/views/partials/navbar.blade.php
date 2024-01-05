@@ -20,7 +20,7 @@
     </style>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('showAbout') }}">About</a>
