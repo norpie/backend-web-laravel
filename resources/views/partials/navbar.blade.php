@@ -4,7 +4,6 @@
             display: flex;
             list-style: none;
             justify-content: space-between;
-            background-color: #e3f2fd;
             margin: 0;
             padding: 10px;
         }

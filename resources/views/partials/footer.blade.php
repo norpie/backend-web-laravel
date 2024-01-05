@@ -1,10 +1,14 @@
+<style>
+    footer {
+        background-color: #e3f2fd;
+        padding: 10px;
+    }
+
+    footer p {
+        text-align: center;
+    }
+</style>
+
 <footer>
-    <style>
-        footer {
-            justify-content: center;
-        }
-    </style>
-    <div class="container">
-        <p class="text-center">© 2024 - All rights reserved</p>
-    </div>
+    <p class="text-center">© 2024 - All rights reserved</p>
 </footer>
