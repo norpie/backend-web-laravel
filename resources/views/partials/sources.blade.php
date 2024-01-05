@@ -1,7 +1,7 @@
 <div class="sources">
     <ul>
         <li>
-            <h2>Laravel</h2>
+            <h3>Laravel</h3>
             <ul>
                 <li><a href="https://laravel.com/docs/10.x">https://laravel.com/docs/10.x</a></li>
                 <li><a href="https://laravel.com/docs/10.x/authentication">https://laravel.com/docs/10.x/authentication</a></li>
@@ -45,7 +45,7 @@
             </ul>
         </li>
         <li>
-            <h2>StackOverflow</h2>
+            <h3>StackOverflow</h3>
             <ul>
                 <li><a href="https://stackoverflow.com/questions/22943570/laravel-method-show-does-not-exist">https://stackoverflow.com/questions/22943570/laravel-method-show-does-not-exist</a></li>
                 <li><a href="https://stackoverflow.com/questions/24744825/access-query-string-values-from-laravel">https://stackoverflow.com/questions/24744825/access-query-string-values-from-laravel</a></li>
@@ -77,7 +77,7 @@
             </ul>
         </li>
         <li>
-            <h2>Laracasts</h2>
+            <h3>Laracasts</h3>
             <ul>
                 <li><a href="https://laracasts.com/discuss/channels/laravel/column-doesnt-exists-it-does">https://laracasts.com/discuss/channels/laravel/column-doesnt-exists-it-does</a></li>
                 <li><a href="https://laracasts.com/discuss/channels/laravel/create-method-does-not-exist-error-even-its-on-the-controller">https://laracasts.com/discuss/channels/laravel/create-method-does-not-exist-error-even-its-on-the-controller</a></li>
@@ -88,7 +88,7 @@
             </ul>
         </li>
         <li>
-            <h2>Misc</h2>
+            <h3>Misc</h3>
             <ul>
                 <li><a href="https://benjamincrozat.com/check-laravel-version">https://benjamincrozat.com/check-laravel-version</a></li>
                 <li><a href="https://fly.io/docs/laravel/database-guides/laravel-pgsql/">https://fly.io/docs/laravel/database-guides/laravel-pgsql/</a></li>
