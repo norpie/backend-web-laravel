@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -38,6 +39,12 @@ Route::middleware('guest')->group(function () {
         Route::get('/reset/{token}', 'showReset')->name('reset');
         Route::post('/reset/{token}', 'reset')->name('reset');
     });
+});
+
+Route::controller(IdeaController::class)->group(function () {
+    Route::get('/ideas', 'showIdeas')->name('ideas.list');
+    Route::get('/ideas/create', 'showCreateIdea')->name('ideas.create')->middleware('auth');
+    Route::post('/ideas/create', 'addIdea')->name('ideas.add');
 });
 
 Route::controller(InfoController::class)->group(function () {

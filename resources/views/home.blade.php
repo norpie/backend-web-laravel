@@ -106,7 +106,7 @@
 
             <h2>How to post an idea</h2>
 
-            <p>Once you've created an account, you can <a href="#">post an idea</a>. You'll need to provide a title,
+            <p>Once you've created an account, you can <a href="{{ route('ideas.list') }}">post an idea</a>. You'll need to provide a title,
                 description, and a bounty amount. The bounty amount is how much you're willing to pay a developer to build
                 your
                 idea. You'll also need to provide a deadline for when you want the idea to be completed.</p>
