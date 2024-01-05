@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    @include('partials/navbar')
     <div>
         <h2>Login</h2>
         <form method="POST" action="{{ route('login') }}">

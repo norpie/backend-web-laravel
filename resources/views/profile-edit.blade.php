@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    @include('partials/navbar')
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
