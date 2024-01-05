@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
-
-<body>
-    @include('partials/navbar')
-    @if ($errors->any())
+@section('content')
+@if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -16,14 +9,12 @@
             @endforeach
         </ul>
     </div>
-    @endif
+@endif
 
-    <div> <!--Render laravel username-->
-        <p>Username: {{ $username }}</p>
-        <p>Date of birth: {{ $dob }}</p>
-        <img src="{{ asset($avatar) }}" alt="Profile image">
-        <p>About me: {{ $about }}</p>
-    </div>
-</body>
-
-</html>
+<div>
+    <p>Username: {{ $username }}</p>
+    <p>Date of birth: {{ $dob }}</p>
+    <img src="{{ asset($avatar) }}" alt="Profile image">
+    <p>About me: {{ $about }}</p>
+</div>
+@endsection
