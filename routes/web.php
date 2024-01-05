@@ -41,6 +41,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::controller(InfoController::class)->group(function () {
+    Route::get('/', 'showHome')->name('home');
     Route::get('/faq', 'showFaqs')->name('showFaqs');
     Route::get('/about', 'showAbout')->name('showAbout');
     Route::get('/news', 'showNews')->name('showNews');

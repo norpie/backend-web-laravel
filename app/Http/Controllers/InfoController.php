@@ -15,6 +15,11 @@ use Illuminate\View\View;
 
 class InfoController extends Controller
 {
+    public function showHome(): View
+    {
+        return view('home');
+    }
+
     public function showAbout(): View
     {
         return view('about');
