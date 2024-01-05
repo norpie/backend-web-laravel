@@ -1,5 +1,5 @@
 @extends('layouts.default')
 
 @section('content')
-    @include('sources')
+    @include('partials.sources')
 @endsection
