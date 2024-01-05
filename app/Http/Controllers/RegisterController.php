@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
     public function show(): View
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function authenticate(Request $request): RedirectResponse
