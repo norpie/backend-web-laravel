@@ -15,6 +15,10 @@ use Illuminate\View\View;
 
 class InfoController extends Controller
 {
+    public function showAbout(): View
+    {
+        return view('about');
+    }
 
     public function showNew(Request $request, string $slug): View
     {

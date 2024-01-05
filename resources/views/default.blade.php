@@ -11,24 +11,13 @@
             margin: 0;
             padding: 0;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .header {
-            background: #ccc;
-            padding: 20px;
-        }
-        .footer {
-            background: #ccc;
-            padding: 20px;
-        }
+    </style>
 </head>
 <body>
     @include('header')
-    <div class="container">
+    <main class="container">
         @yield('content')
-    </div>
+    </main>
     @include('footer')
 </body>
 </html>
