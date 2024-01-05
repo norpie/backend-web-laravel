@@ -24,11 +24,14 @@
             <a class="nav-link" href="{{ route('showAbout') }}">About</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('showNews') }}">News</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('showContact') }}">Contact</a>
         </li>
         @if (Auth::check())
             <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
+                <a class="nav-link" href="{{ route('profile.show') }}">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href={{ route('logout') }}>Logout</a>
