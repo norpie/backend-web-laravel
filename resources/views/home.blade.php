@@ -122,12 +122,10 @@
 
             <h2>How to accept a proposal</h2>
 
-            <p>Once you've posted an idea, you can <a href="#">accept a proposal</a>. You'll need to provide a description
+            <p>Once you've reiceved a proposal, you can <a href="#">accept the proposal</a>. You can then hash out the
+                details
                 of
-                how
-                you plan to build the idea, and how much you want to be paid to build it. You'll also need to provide an
-                estimated completion date.</p>
-
+                the project with the developer.</p>
         </div>
     </div>
 @endsection
