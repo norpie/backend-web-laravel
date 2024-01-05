@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>News Article</title>
-</head>
-<body>
+@extends('layouts.default')
 
+@section('content')
     @if ($errors->any())
         <div>
             <ul>
@@ -44,4 +39,4 @@
             <li>{{ $commentWriters[$comment->id] }}: {{ $comment->comment }}</li>
         @endforeach
     </ul>
-</body>
+@endsection
