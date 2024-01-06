@@ -119,7 +119,25 @@
             padding: 10px;
             border: 1px solid #ddd;
         }
-    </style>
+
+        .accepted h2 {
+            text-align: center;
+        }
+
+        .accepted p {
+            text-align: center;
+        }
+
+        .contact {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .contact p {
+            text-align: center;
+        }    </style>
 
     <div class="idea">
         <h1 class="title"><a class="publisher"
@@ -142,6 +160,14 @@
                     href='{{ route('profile.username', ['username' => $proposal->user->username]) }}'>{{ $proposal->user->username }}</a>
             </h3>
             <p>{{ $proposal->description }}</p>
+            @if (Auth::check())
+                @if (Auth::user()->id == $idea->user->id)
+                    <div class="contact">
+                        <p>You can contact the publisher of this proposal by sending an email to:</p>
+                        <p>{{ $proposal->user->email }}</p>
+                    </div>
+                @endif
+            @endif
         </div>
     @else
         <p class="accepted">No proposal has been accepted yet</p>
