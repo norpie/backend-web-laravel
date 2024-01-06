@@ -90,8 +90,17 @@ class ProfileController extends Controller
             $about_me = '';
         }
 
+        $avatar = DB::table('avatars')->where('user_id', $user->id);
+
+        if ($avatar->count() > 0) {
+            $avatar = 'img/avatars/' . $avatar->first()->path;
+        } else {
+            $avatar = 'img/placeholders/avatar.png';
+        }
+
         return view('profile-edit', [
             'username' => $user->username,
+            'avatar' => $avatar,
             'about' => $about_me,
         ]);
     }
@@ -101,22 +110,25 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'about' => 'string|max:255',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'about' => 'nullable|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'username' => 'string|max:255|unique:users,username,' . $user->id,
         ]);
 
-        $about_me = DB::table('about_me')->where('user_id', $user->id);
 
-        if ($about_me->count() > 0) {
-            DB::table('about_me')->where('user_id', $user->id)->update([
-                'about_me' => $request->input('about'),
-            ]);
-        } else {
-            DB::table('about_me')->insert([
-                'user_id' => $user->id,
-                'about_me' => $request->input('about'),
-            ]);
+        if ($validated['about'] != null) {
+            $about_me = DB::table('about_me')->where('user_id', $user->id);
+
+            if ($about_me->count() > 0) {
+                DB::table('about_me')->where('user_id', $user->id)->update([
+                    'about_me' => $request->input('about'),
+                ]);
+            } else {
+                DB::table('about_me')->insert([
+                    'user_id' => $user->id,
+                    'about_me' => $request->input('about'),
+                ]);
+            }
         }
 
         if ($request->hasFile('avatar')) {
