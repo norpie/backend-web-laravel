@@ -11,10 +11,39 @@
     </div>
 @endif
 
-<div>
-    <p>Username: {{ $username }}</p>
-    <p>Date of birth: {{ $dob }}</p>
+<style>
+    .profile {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .profile img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+
+    .profile .username {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .profile .dob {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .profile .about {
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class='profile'>
+    <p class="username">Username: {{ $username }}</p>
+    <p class"dob">Date of birth: {{ $dob }}</p>
     <img src="{{ asset($avatar) }}" alt="Profile image">
-    <p>About me: {{ $about }}</p>
+    <p class="about">About: {{ $about }}</p>
 </div>
 @endsection
