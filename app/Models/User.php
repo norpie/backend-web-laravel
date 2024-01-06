@@ -41,4 +41,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'dob' => 'datetime',
     ];
+
+    /**
+     * Is user admin?
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->hasOne(Admin::class)->exists();
+    }
+
 }

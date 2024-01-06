@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(Admin::class)->group(function () {
     Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/news', 'dashboard')->name('admin.dashboard');
         Route::get('/admin/news', 'showNews')->name('admin.shownews');
         Route::post('/admin/news/edit', 'editNews')->name('admin.editnews');
         Route::post('/admin/news/add', 'addNews')->name('admin.addnews');
