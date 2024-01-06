@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcceptedProposal;
 use App\Models\Idea;
+use App\Models\Proposal;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -64,5 +66,45 @@ class IdeaController extends Controller
         ]);
 
         return redirect()->route('ideas.list');
+    }
+
+    public function storeProposal(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'idea_id' => 'required|numeric',
+            'description' => 'required',
+        ]);
+
+        $idea = Idea::find($request->input('idea_id'));
+
+        if (!$idea) {
+            abort(404);
+        }
+
+        $idea->proposals()->create([
+            'user_id' => $request->user()->id,
+            'description' => $validated['description'],
+        ]);
+
+        return redirect()->route('ideas.list', ['id' => $idea->id]);
+    }
+
+    public function acceptProposal(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'proposal_id' => 'required|numeric',
+        ]);
+
+        $proposal = Proposal::find($validated['proposal_id']);
+
+        if (!$proposal) {
+            abort(404);
+        }
+
+        $acceptedProposal = AcceptedProposal::create([
+            'proposal_id' => $proposal->id,
+        ]);
+
+        return redirect()->route('ideas.list', ['id' => $proposal->idea->id]);
     }
 }

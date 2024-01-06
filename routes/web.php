@@ -45,6 +45,8 @@ Route::controller(IdeaController::class)->group(function () {
     Route::get('/ideas', 'showIdeas')->name('ideas.list');
     Route::get('/ideas/create', 'showCreateIdea')->name('ideas.create')->middleware('auth');
     Route::post('/ideas/create', 'addIdea')->name('ideas.add');
+    Route::post('/ideas/proposal', 'storeProposal')->name('ideas.proposal')->middleware('auth');
+    Route::post('/ideas/accept', 'acceptProposal')->name('ideas.accept')->middleware('auth');
 });
 
 Route::controller(InfoController::class)->group(function () {

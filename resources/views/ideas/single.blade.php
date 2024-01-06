@@ -105,7 +105,22 @@
         .proposal input[type=submit]:disabled:hover {
             background-color: #2196F3;
         }
+
+        .proposals {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .accepted {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
     </style>
+
     <div class="idea">
         <h1 class="title"><a class="publisher"
                 href='{{ route('profile.username', ['username' => $idea->user->username]) }}'>{{ $idea->user->username }}</a>
@@ -115,25 +130,69 @@
         <p class="deadline">{{ $idea->deadline }}</p>
     </div>
 
+    @if ($idea->hasAcceptedProposal())
+        @php
+            $accepted_proposal = $idea->acceptedProposal()->first();
+            $proposal = $accepted_proposal->proposal()->first();
+            $proposal->user = $proposal->user()->first();
+        @endphp
+        <div class="proposal">
+            <h2>Accepted proposal</h2>
+            <h3 class="title"><a class="publisher"
+                    href='{{ route('profile.username', ['username' => $proposal->user->username]) }}'>{{ $proposal->user->username }}</a>
+            </h3>
+            <p>{{ $proposal->description }}</p>
+        </div>
+    @else
+        <p class="accepted">No proposal has been accepted yet</p>
+    @endif
+
     @if (Auth::check())
         @if (Auth::user()->id == $idea->user->id)
-            <div class="proposal">
+            <div class="proposals">
                 <h2>Proposals</h2>
                 @foreach ($idea->proposals as $proposal)
-                    <p>{{ $proposal->description }}</p>
+                    <div class="proposal">
+                        <h3 class="title"><a class="publisher"
+                                href='{{ route('profile.username', ['username' => $proposal->user->username]) }}'>{{ $proposal->user->username }}</a>
+                        </h3>
+                        <p>{{ $proposal->description }}</p>
+                        @if (!$idea->hasAcceptedProposal())
+                            <form action="{{ route('ideas.accept') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="proposal_id" value="{{ $proposal->id }}">
+                                <input type="submit" value="Accept">
+                            </form>
+                        @endif
+                    </div>
                 @endforeach
             </div>
         @else
-            <div class="proposal">
-                {{-- <form action="{{ route('proposal.store') }}" method="post"> --}}
-                <h2>Submit a proposal</h2>
-                <form action="#" method="post">
-                    @csrf
-                    <input type="hidden" name="idea_id" value="{{ $idea->id }}">
-                    <textarea name="description" placeholder="Write here how you would solve this problem, be as detailed as possible."></textarea>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
+            @if (!$idea->hasAcceptedProposal())
+                @if (!$idea->hasProposalFromUser(Auth::user()->id))
+                    <div class="proposal">
+                        <h2>Submit a proposal</h2>
+                        <form action="{{ route('ideas.proposal') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="idea_id" value="{{ $idea->id }}">
+                            <textarea name="description" placeholder="Write here how you would solve this problem, be as detailed as possible."></textarea>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                @else
+                    @php
+                        $proposal = $idea->proposalFromUser(Auth::user()->id);
+                    @endphp
+
+                    <div class="proposal">
+                        <h2>Your proposal</h2>
+                        <h3 class="title"><a class="publisher"
+                                href='{{ route('profile.username', ['username' => $proposal->user->username]) }}'>{{ $proposal->user->username }}</a>
+                        </h3>
+                        <p>{{ $proposal->description }}</p>
+                    </div>
+                @endif
+            @endif
         @endif
     @endif
 @endsection
