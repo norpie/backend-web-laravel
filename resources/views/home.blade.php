@@ -113,7 +113,7 @@
 
             <h2>How to submit a proposal</h2>
 
-            <p>Once you've created an account, you can <a href="#">submit a proposal</a>. You'll need to provide a
+            <p>Once you've created an account, you can submit a proposal. You'll need to provide a
                 description
                 of
                 how you plan to build the idea, and how much you want to be paid to build it. You'll also need to provide
@@ -122,7 +122,7 @@
 
             <h2>How to accept a proposal</h2>
 
-            <p>Once you've reiceved a proposal, you can <a href="#">accept the proposal</a>. You can then hash out the
+            <p>Once you've reiceved a proposal, you can accept the proposal. You can then hash out the
                 details
                 of
                 the project with the developer.</p>
