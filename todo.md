@@ -83,5 +83,5 @@
         - [X] Username: admin
         - [X] Email: admin@ehb.be
         - [X] Password: Password!321
-- [ ] Theming/styles
-    - [ ] Provide some default styling for your website. Even though design is not a core competence of this course, I expect a minimum. If you are not good at design, use something like Bootstrap and pick a free theme from a website such as https://startbootstrap.com/Links to an external site.
+- [X] Theming/styles
+    - [X] Provide some default styling for your website. Even though design is not a core competence of this course, I expect a minimum. If you are not good at design, use something like Bootstrap and pick a free theme from a website such as https://startbootstrap.com/Links to an external site.
