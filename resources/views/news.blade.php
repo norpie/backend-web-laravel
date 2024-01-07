@@ -20,7 +20,7 @@
             <p>{{ $new->created_at }}</p>
             <p>Updated At</p>
             <p>{{ $new->updated_at }}</p>
-            <img src="{{ asset($new->image_path) }}" alt=""><br>
+            <img src="{{ asset("img/news/" . $new->image_path) }}" alt=""><br>
             <hr>
         @endforeach
     </div>

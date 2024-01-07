@@ -38,14 +38,32 @@ class AdminController extends Controller
             return back()->withErrors(['id' => 'News not found']);
         }
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'content' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        News::where('id', $request->id)->update([
-            'title' => $request->title,
-            'content' => $request->content,
+        if ($validated['title']) {
+            $news->title = $validated['title'];
+        }
+
+        if ($validated['content']) {
+            $news->content = $validated['content'];
+        }
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('img/news'), $filename);
+            $news->image_path = $filename;
+        }
+
+        News::where('id', $news->id)->update([
+            'title' => $news->title,
+            'content' => $news->content,
+            'image_path' => $news->image_path,
             'updated_at' => now()
         ]);
 
