@@ -33,6 +33,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('showContact') }}">Contact</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('showFaqs') }}">Faq</a>
+        </li>
         @if (Auth::check())
             @if (Auth::user()->isAdmin())
                 <li class="nav-item">

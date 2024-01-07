@@ -18,15 +18,15 @@ class NewsSeeder extends Seeder
         $admin = Admin::first();
 
         $news = News::create([
-            'title' => 'News Title',
+            'title' => 'Site is now live!',
             'user_id' => $admin->user_id,
-            'content' => 'News Content',
-            'image_path' => 'placeholders/news.png',
+            'content' => 'The website is now live!',
+            'image_path' => '1.png',
             'slug' => 'news-title',
         ]);
 
         $first_comment = Comment::create([
-            'user_id' => $admin->id,
+            'user_id' => $admin->user_id,
             'news_id' => $news->id,
             'comment' => 'Enjoy reading this news!',
         ]);
