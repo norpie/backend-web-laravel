@@ -69,6 +69,7 @@
                 <button type="submit">Login</button>
             </div>
         </form>
+        <p>Forgot your password?<a href="{{ route('forgot') }}">Click here.</a></p>
         <p>Don't have an account?<a href="{{ route('register') }}">Register here.</a></p>
     </div>
 @endsection
