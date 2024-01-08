@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('accepted_proposals', function (Blueprint $table) {
             $table->id();
-            $table->integer('proposal_id');
-            $table->foreign('proposal_id')->references('id')->on('proposals');
             $table->timestamps();
+        });
+
+        Schema::table('accepted_proposals', function (Blueprint $table) {
+            $table->foreignId('proposal_id')->references('id')->on('proposals');
         });
     }
 

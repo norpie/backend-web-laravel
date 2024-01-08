@@ -15,13 +15,15 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id') -> on('users') -> onDelete('cascade');
             $table->string('title');
             $table->string('slug');
             $table->string('image_path');
             $table->text('content');
             $table->timestamps();
+        });
+
+        Schema::table('news', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 

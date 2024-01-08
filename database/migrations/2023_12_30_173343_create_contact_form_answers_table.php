@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('contact_form_answers', function (Blueprint $table) {
             $table->id();
-            $table->integer('contact_form_id');
-            $table->foreign('contact_form_id')->references('id')->on('contact_forms')->onDelete('cascade');
-            $table->integer('admin_id');
-            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('answer');
             $table->timestamps();
+        });
+
+        Schema::table('contact_form_answers', function (Blueprint $table) {
+            $table->foreignId('contact_form_id')->constrained()->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
         });
     }
 

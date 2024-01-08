@@ -15,11 +15,13 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->foreign('category_id')->references('id')->on('faq_categories')->onDelete('cascade');
             $table->string('question');
             $table->string('answer');
             $table->timestamps();
+        });
+
+        Schema::table('faqs', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained('faq_categories')->onDelete('cascade');
         });
     }
 

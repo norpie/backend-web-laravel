@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('idea_id');
-            $table->foreign('idea_id')->references('id')->on('ideas');
             $table->text('description');
             $table->timestamps();
+        });
+
+        Schema::table('proposals', function (Blueprint $table) {
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('idea_id')->references('id')->on('ideas');
         });
     }
 

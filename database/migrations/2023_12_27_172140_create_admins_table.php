@@ -15,9 +15,11 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+        });
+
+        Schema::table('admins', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 
